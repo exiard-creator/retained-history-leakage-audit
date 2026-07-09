@@ -92,20 +92,6 @@ The current source has no external `\input{...}` dependency.  The only required 
 outputs/retained_history_leakage_audit_demo.png
 ```
 
-## Recommended GitHub and Zenodo Workflow
-
-Use GitHub for the live source and Zenodo for DOI-backed archival releases.
-
-Recommended workflow:
-
-1. Create a GitHub repository.
-2. Add the manuscript source, PDF, figure, script, and this README.
-3. Create a GitHub release, for example `v1.0.0`.
-4. Enable Zenodo integration for the GitHub repository.
-5. Let Zenodo archive the release and mint a DOI.
-6. If desired, add the Zenodo DOI badge/link to this README and future manuscript versions.
-
-Avoid uploading unrelated working files, editor previews, or temporary LaTeX build products as part of the archived release.
 
 ## Suggested Release Files
 
