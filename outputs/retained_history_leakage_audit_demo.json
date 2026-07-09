@@ -1,0 +1,12 @@
+{
+  "t_max": 30.0,
+  "dt": 0.01,
+  "initial_gamma": 0.25,
+  "final_gamma": 2.3662819453223416,
+  "initial_observer_data": 0.0,
+  "final_observer_data": 2.390582501074766,
+  "max_leakage": 0.3471979028902725,
+  "measurement_center": 15.0,
+  "measurement_strength": 0.24,
+  "interpretation": "target retained history is an asset for the target; leakage is a loss for the target but a data gain for the observer"
+}

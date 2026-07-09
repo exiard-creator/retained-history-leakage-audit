@@ -1,0 +1,424 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[hypcap=false]{caption}
+\usepackage{hyperref}
+
+\newtheorem{definition}{Definition}
+\newtheorem{principle}{Principle}
+\newtheorem{criterion}{Criterion}
+\newtheorem{remark}{Remark}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\newcommand{\dd}{\,d}
+\newcommand{\XiField}{\Xi=Ae^{i\phi}}
+\newcommand{\Ghist}{\Gamma}
+\newcommand{\Jout}{J_{\mathrm{out}}}
+\newcommand{\taul}{\tau_{\mathrm{leak}}}
+\newcommand{\Tobs}{T_{\mathrm{obs}}}
+
+\title{Retained History and Leakage in Nonequilibrium Systems:\\
+A Four-Channel Audit Framework for Phase-Amplitude Correspondence}
+\author{Yoshida}
+\date{July 9, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note proposes a correspondence framework for systems in which phase, amplitude, retained history, and leakage jointly determine observable structure.  It synthesizes three lines of previous work: phase-amplitude closure, proper-time and quantum phase bookkeeping, and history-coordinate \(\Ghist\) modeling of memory-bearing nonequilibrium dynamics.  The central distinction is between retained history, represented by \(\Ghist\), and exported or erased history, represented by leakage channels such as \(\Jout\), \(\dot E_{\mathrm{out}}\), contrast loss, heat, radiation, degradation, or forgetting.  The proposed state language is not a replacement for general relativity, quantum mechanics, thermodynamics, chemistry, or biology.  Rather, it asks whether information commonly compressed into noise, probability, damping, branch labels, or phenomenological loss can be separated into phase \(\phi\), coherent amplitude \(A\), retained history \(\Ghist\), and leakage \(\Jout\).  Known phenomena are then organized as different balances between local closure, quasi-closure, and exported information: clock phase, quantum interference, decoherence, thermal dissipation, bonding, condensation, material stabilization, radiation, biological memory, homeostasis, immune memory, genetic continuity, and aging.  The result is a conservative audit map: compression is not discovery, but neither is discarded history automatically ignorance.  A proposed retained-history coordinate becomes physically serious only when it is causal, predictive on held-out data, robust across channels, and responsive to controlled history or leakage perturbations.
+\end{abstract}
+
+\section{Purpose and Positioning}
+Many established physical and biological descriptions depend on information that is not fully contained in an instantaneous state.  A clock records accumulated phase.  A quantum interference pattern depends on phase coherence and visibility.  A damped oscillator carries a history of lost organized motion.  A hysteretic circuit responds differently after different drive histories.  A chemical bond stabilizes a shared configuration by suppressing escape channels.  A living cell maintains structure only by retaining internal organization while exporting heat, waste, and degraded information.
+
+The purpose of this manuscript is to place these examples into a shared operational grammar.  The claim is not that one new equation replaces all domain-specific theories.  General relativity, quantum mechanics, thermodynamics, chemical kinetics, and biological regulation retain their established precision.  The working claim is that some descriptions may become under-resolved when retained history and leakage are both collapsed into residual terms.  The proposed framework therefore separates four bookkeeping channels:
+\begin{align}
+  \phi &\quad \text{phase},
+  & A &\quad \text{coherent amplitude or organized strength},\nonumber\\
+  \Ghist &\quad \text{retained history},
+  & \Jout &\quad \text{leakage or exported history}.
+  \label{eq:core-channels}
+\end{align}
+The organizing question is whether a phenomenon is better described as a balance among these channels than as an instantaneous state plus noise.
+
+This paper is therefore a correspondence and audit paper.  It places previous notes on phase-amplitude closure, proper time, quantum coherence, \(\Ghist\)-history, leakage, and biological information into one upper-level map.  It is intentionally broad, but each correspondence is stated as a testable reading rather than as a completed derivation.
+
+\section{Scope of Claims}
+Because the framework deliberately crosses physical, chemical, and biological examples, its claims must be separated by level.  The paper does not assert that these domains obey one newly derived microscopic equation.  It asserts that they can be audited with the same four-channel bookkeeping: phase, amplitude, retained history, and leakage.  This is a common diagnostic form, not a claim of identical mechanism.
+
+\begin{center}
+\small
+\begin{tabular}{L{0.16\linewidth}L{0.31\linewidth}L{0.40\linewidth}}
+\toprule
+Level & Status & Examples in this paper \\
+\midrule
+Level 1 & Direct bookkeeping within established physics & Clock phase, quantum phase, decoherence, damping, hysteresis, thermal leakage, measurement records. \\
+Level 2 & Structural correspondence requiring domain equations & Chemical bonding, condensation, material-state stabilization, radiation boundaries. \\
+Level 3 & Biological application of the same audit form & Memory, immunity, genetic continuity, homeostasis, repair, aging. \\
+\emph{Level 4*} & \emph{Speculative hypothesis targets only; not evidential support} & \emph{Bell-type audit interpretations, cosmological dissipative channels, and horizon leakage analogies.} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The confidence decreases from Level 1 to Level 4.  Level 1 examples are closest to ordinary measurable phase, amplitude, and dissipative channels.  Level 2 examples are useful when standard domain equations supply the microscopic mechanism.  Level 3 examples are applications to living nonequilibrium systems, not claims that biological regulation is reducible to one physical formula.  The starred Level 4 row is visually separated because it is not part of the evidential core of the manuscript.  Level 4 examples are retained only as hypothesis targets and should not be read as established consequences; in particular, no claim is made here to replace the standard quantum account of Bell inequality violations.
+
+\section{Core Definitions}
+
+\begin{definition}[Phase-amplitude projection]
+A local observable projection is represented by
+\begin{equation}
+  Z(t)=A(t)e^{i\phi(t)},
+  \label{eq:phase-amplitude}
+\end{equation}
+where \(\phi\) denotes a relative phase and \(A\geq0\) denotes coherent amplitude, contrast, visibility, organized intensity, or a domain-specific magnitude that remains phase-addressable.
+Modern phase-amplitude reduction work similarly treats amplitude or isostable coordinates as information beyond timing alone, especially under stronger perturbations \cite{KreiderThomas2024}.
+\end{definition}
+
+\begin{definition}[Retained history]
+A retained-history coordinate \(\Ghist\) is a causal functional of past state, phase-amplitude, drive, and environment records,
+\begin{equation}
+  \Ghist(t)=\mathcal{H}\{Z(s),S(s),u(s),B(s):s\leq t\},
+  \label{eq:gamma-causal}
+\end{equation}
+where \(S\) denotes measured state channels, \(u\) drive or forcing channels, and \(B\) bath or boundary channels.  \(\Ghist\) is not assumed to be a hidden dimension of nature.  It is a candidate coordinate only if it improves prospective prediction and survives causal and perturbative tests.
+\end{definition}
+
+\begin{definition}[Leakage]
+Leakage is the exported, erased, thermalized, radiated, or unrecoverable part of a system's organized phase-amplitude and history structure.  It may appear as an outward flux \(\Jout\), an energy loss rate \(\dot E_{\mathrm{out}}\), contrast decay, heat production, radiation, molecular degradation, forgetting, mutation, or boundary escape.  The corresponding leakage time is written
+\begin{equation}
+  \taul=\frac{E_{\mathrm{stored}}}{\dot E_{\mathrm{out}}},
+  \label{eq:leakage-time}
+\end{equation}
+when a stored organized-energy measure and an outward loss rate are available.
+\end{definition}
+
+The compact distinction is
+\begin{equation}
+  \text{retained history} = \Ghist,
+  \qquad
+  \text{exported history} = \text{leakage}.
+  \label{eq:retained-exported}
+\end{equation}
+Thus leakage is not identical to \(\Ghist\).  It is the complementary channel: the part of phase-amplitude and history structure not retained inside the chosen system boundary.
+
+\begin{remark}[Boundary convention]
+The distinction between retained history and leakage is boundary-dependent.  A system boundary must be specified before assigning a contribution to \(\Ghist_{\mathrm{sys}}\), \(\Ghist_{\mathrm{env}}\), or \(\Jout\).  The same physical transfer can be leakage for the target system and retained data for an observer or environment.  Changing the boundary is allowed, but it must be declared explicitly and the corresponding balance terms must be transformed consistently.  Without a stated boundary convention, \(\Ghist\) and \(\Jout\) are bookkeeping labels rather than testable coordinates.
+\end{remark}
+
+A minimal balance law can be written schematically as
+\begin{equation}
+  \dot\Ghist_{\mathrm{sys}}
+  =\mathcal{I}_{\mathrm{in}}(t)
+  +\mathcal{C}_{\mathrm{int}}(t)
+  -\mathcal{L}_{\mathrm{out}}(t)
+  -\mathcal{D}_{\mathrm{erase}}(t),
+  \label{eq:gamma-leak-balance}
+\end{equation}
+Here \(\mathcal{I}_{\mathrm{in}}\) denotes incoming or newly encoded information.  The term \(\mathcal{C}_{\mathrm{int}}\) denotes internal consolidation or correlation-building, \(\mathcal{L}_{\mathrm{out}}\) leakage across the boundary, and \(\mathcal{D}_{\mathrm{erase}}\) irreversible erasure or coarse-grained thermalization.  Equation~\eqref{eq:gamma-leak-balance} is not yet a universal dynamical law.  It is a conservation-style audit that forces retained and lost history to be stated separately.
+
+\section{Closure, Quasi-Closure, and Observation Time}
+A system rarely has perfect closure.  The useful operational concept is quasi-closure: leakage is nonzero but sufficiently slow or sufficiently small on the observation scale.
+
+\begin{criterion}[Quasi-closure]
+A domain is treated as effectively closed for a chosen observation if
+\begin{equation}
+  \frac{|\Jout|}{E_{\mathrm{in}}}<\varepsilon_{\mathrm{leak}},
+  \qquad
+  0<\varepsilon_{\mathrm{leak}}\ll1,
+  \label{eq:leak-tolerance}
+\end{equation}
+or, when a leakage time is available,
+\begin{equation}
+  \Tobs\ll\taul.
+  \label{eq:obs-vs-leak}
+\end{equation}
+In this regime, retained-history coordinates may be stable enough to support prediction even though the system is not absolutely closed.
+\end{criterion}
+
+This criterion links the \(\Ghist\) framework to leakage language.  If leakage is too fast, \(\Ghist_{\mathrm{sys}}\) becomes unstable or must be enlarged to include environmental history \(\Ghist_{\mathrm{env}}\).  If leakage is slow relative to observation, the system can behave as if it has an internally retained branch memory.  Many physical structures and candidate biological applications can be discussed in this intermediate region: not closed in principle, but closed enough to maintain recognizable identity over a relevant time scale.
+
+\begin{principle}[Resolution rather than replacement]
+The framework does not begin by rejecting established equations.  It challenges the assumption that all relevant information has already been captured once an instantaneous state, a probability distribution, and a phenomenological loss term have been specified.  Noise is not always ignorance; in some regimes it may be unresolved history, unresolved leakage, or unresolved phase-amplitude structure.
+\end{principle}
+
+\section{Correspondence to Physical Phenomena}
+Table~\ref{tab:physical-correspondence} summarizes the physical map.  Each entry is a correspondence, not a derivation, and should be read through the hierarchy in the Scope of Claims section.  The standard description remains primary unless the phase-amplitude--history--leakage variables produce new prospective predictions.
+
+\begin{center}
+\small
+\begin{tabular}{L{0.19\linewidth}L{0.29\linewidth}L{0.40\linewidth}}
+\toprule
+Phenomenon & Standard description & Phase-amplitude--history--leakage reading \\
+\midrule
+Relativistic clock shift & Proper time differs between worldlines under gravity or motion. & Clock records are accumulated phase; geometry changes phase-rate projection, while a stable clock is a quasi-closed phase counter. \\
+Gravitational redshift & Frequency comparison depends on gravitational potential. & Observed frequency is phase advance per comparison time; redshift is a change in the phase projection factor. \\
+Quantum phase evolution & Energy sets phase rate through \(E/\hbar\). & \(\phi\) carries coherent evolution; \(A\) records visibility or coherent weight; uncontrolled coupling exports phase information. \\
+Matter-wave interference & Path-dependent phase differences generate fringes. & Interference is phase-closure comparison; contrast loss measures leakage into which-path or environmental history. \\
+Decoherence & Entanglement with uncontrolled degrees suppresses interference. & Coherent amplitude \(A\) decreases while history is transferred from system-accessible \(\Ghist_{\mathrm{sys}}\) to environment-accessible \(\Ghist_{\mathrm{env}}\). \\
+Thermal dissipation & Organized work degrades into heat and entropy. & Amplitude or organized energy leaks into bath degrees; \(\Ghist_{\mathrm{diss}}\) records dissipative debt if recoverable, otherwise it becomes erased history. \\
+Hysteresis & Response depends on prior branch or drive history. & \(\Ghist\) labels branch memory not visible in instantaneous coordinates; loop area is leakage or dissipative debt accumulated over a cycle. \\
+Nonlinear synchronization & Oscillators lock, lag, or switch under forcing. & Phase \(\phi\), amplitude \(A\), and retained drive history \(\Ghist\) determine whether locking survives leakage and perturbation. \\
+Chemical bonding & Stable molecular states arise from quantum electronic structure and energy lowering. & Bonding is read as phase-compatible amplitude sharing with leakage suppression: internal retention beats escape channels on the bond time scale. \\
+Condensation and ordering & Many degrees form collective order parameters. & A common phase-amplitude structure becomes macroscopically retained; leakage and defects limit coherence length and lifetime. \\
+Particle or material-state stabilization & Field excitations, quasiparticles, or phases persist under allowed conservation laws. & A material state is a localized phase-amplitude closure whose leakage time exceeds the relevant observation or interaction time. \\
+Radiation & Energy is transported outward by field modes. & Radiation is explicit leakage of organized energy and phase information from a source boundary. \\
+\midrule
+\emph{Black-hole evaporation or horizon leakage*} & \emph{Quantum fields near horizons produce outgoing flux in semiclassical treatments.} & \emph{Analogy-level reading only: a horizon-like boundary is not absolute closure if an allowed leakage channel exists; the observable is the leakage time relative to system evolution.} \\
+\emph{Cosmological dissipative channels*} & \emph{Energy, entropy, and radiation histories affect large-scale evolution.} & \emph{Speculative audit target only: large-scale effective terms may be classified as retained background history versus exported information, without replacing standard cosmological tests.} \\
+\bottomrule
+\end{tabular}
+\captionof{table}{Physical correspondence map for retained history and leakage.  Starred italic entries are analogy-level or speculative audit targets, not evidential support.}
+\label{tab:physical-correspondence}
+\end{center}
+
+\section{Bonding, Matter Stabilization, and Leakage Suppression}
+Bonding and material stabilization are useful tests of the framework because they are neither purely mechanical nor purely informational.  A stable bond is already described by quantum chemistry through electronic structure, symmetry, orbital overlap, exchange, correlation, and energy minimization.  The present framework does not replace those calculations.  It adds a structural reading:
+\begin{equation}
+  \text{bond stability}
+  \quad\Longleftrightarrow\quad
+  \text{phase-compatible retention exceeds leakage and escape}.
+  \label{eq:bond-reading}
+\end{equation}
+In other words, a bond is a local quasi-closure of phase-amplitude structure.  The relevant retained history may be a preparation-dependent conformation, a local electronic arrangement, a vibrational phase relation, or a metastable structural branch.  Leakage appears as dissociation, phonon emission, radiative decay, solvent coupling, thermal disruption, or loss of coherence.
+
+This reading also clarifies why the paper avoids strong language such as ``matter generation.''  The framework should not claim to derive particle creation from first principles.  Instead it can say that a material or particle-like state becomes observable when a local excitation is stabilized long enough to act as an identifiable object:
+\begin{equation}
+  \taul^{\mathrm{state}}\gg \tau_{\mathrm{int}}
+  \quad\Rightarrow\quad
+  \text{persistent material state on interaction time }\tau_{\mathrm{int}}.
+  \label{eq:material-stability}
+\end{equation}
+Thus material-state persistence is treated operationally as phase-amplitude closure plus sufficient leakage suppression.  This provides a common stability audit for a broad class of phenomena, including bound states, condensates, quasiparticles, metastable phases, droplets, and biological compartments, without claiming that their microscopic dynamics are identical.
+
+\section{Correspondence to Biological Information Systems}
+Living systems are treated here as application-level examples of open nonequilibrium systems.  They import energy and matter, maintain internal organization, encode history, repair damage, and export heat, waste, and degraded information.  They are therefore natural examples of quasi-closure rather than perfect closure.  The biological correspondence is summarized in Table~\ref{tab:bio-correspondence}.
+
+\begin{center}
+\small
+\begin{tabular}{L{0.20\linewidth}L{0.30\linewidth}L{0.38\linewidth}}
+\toprule
+Biological phenomenon & Standard description & Retained-history--leakage reading \\
+\midrule
+Memory & Neural or molecular state changes alter future response. & \(\Ghist\) is retained preparation history; forgetting is leakage, degradation, or overwriting. \\
+Neural activity & Spikes, rhythms, plasticity, and network states encode information. & Phase and amplitude describe oscillatory coordination; synaptic and network history form \(\Ghist\); noise and metabolic heat are leakage channels. \\
+Immune memory & Prior antigen exposure changes later immune response. & Antigen history is retained as cellular and molecular \(\Ghist\); waning immunity is leakage or decay of retained response capacity. \\
+Genetic continuity & DNA sequence and regulatory architecture preserve lineage information. & Genetic structure is long-time retained history; mutation, replication error, damage, and repair failure are leakage or corruption channels. \\
+Epigenetics & Gene expression depends on reversible marks and environment history. & Epigenetic state is a history coordinate between genotype and current phenotype; environmental stress can write, erase, or leak this coordinate. \\
+Protein folding and LLPS & Molecular structure and condensates depend on sequence, solvent, concentration, and history. & Folded or phase-separated states are quasi-closed amplitude structures; zero- or low-leakage regimes correspond to stable local retention. \\
+Metabolism & Energy and matter flux maintain far-from-equilibrium order. & Metabolic organization keeps \(A\) and \(\Ghist\) above collapse thresholds while exporting heat and waste as controlled leakage. \\
+Homeostasis & Feedback maintains physiological variables within viable ranges. & Homeostasis is dynamic quasi-closure: leakage and perturbations are countered by repair, regulation, and history-dependent feedback. \\
+Development & Past signals constrain later morphology and cell fate. & Development is structured accumulation of \(\Ghist\) across branching histories; leakage or noise causes variability and failure modes. \\
+Aging & Damage accumulates and repair capacity declines. & Aging is a shift in balance: retained functional history weakens, leakage and unrepaired corruption accumulate, and quasi-closure becomes harder to maintain. \\
+Disease progression & Perturbed regulation changes future state trajectories. & Disease can be modeled as maladaptive \(\Ghist\), excessive leakage, failed repair, or distorted phase-amplitude coordination. \\
+\bottomrule
+\end{tabular}
+\captionof{table}{Biological information correspondence map.}
+\label{tab:bio-correspondence}
+\end{center}
+
+The biological table is an application map, not a reduction of life to one equation.  Its value is organizational.  It suggests that biological identity is maintained by a moving boundary between retained organization and exported disorder.  A cell, tissue, organism, or ecosystem survives by keeping the relevant leakage times longer than the repair, regulation, and reproduction times that refresh its retained history.
+
+Rather than treating biology as a completed demonstration, the present framework treats biological systems as candidate audit targets.  This is consistent with recent information- and stochastic-thermodynamic approaches, which emphasize that biological function, learning, and information storage must be analyzed together with kinetic constraints and energetic or dissipative costs \cite{Karbowski2024,CaoLiang2025}.  A suitable dataset would contain time-resolved or perturbation-resolved measurements of internal state, input history, degradation or repair channels, and later functional response.  The baseline model would use only instantaneous observables such as concentration, sequence, activity, or environmental condition.  A retained-history model would add only causal variables constructed from past exposure, damage, repair, adaptation, or leakage records.  The claim would be supported only if this causal coordinate improves held-out prediction and survives shuffled-history, future-leak, and independent-channel controls.  Until such tests are performed, biological examples in this paper should be read as analysis protocols and validation targets, not as completed evidence for \(\Ghist\).
+
+\section{Unified Balance Across Domains}
+The same schematic audit can be used across physical and biological examples, provided that each domain supplies its own variables and mechanisms:
+\begin{align}
+  \dot A
+  &= \mathcal{P}_A - \mathcal{K}_A A - \mathcal{L}_A,
+  \label{eq:amp-balance}\\
+  \dot\phi
+  &= \omega_{\mathrm{local}} + \mathcal{C}_{\phi\Ghist} + \eta_\phi,
+  \label{eq:phase-balance}\\
+  \dot\Ghist
+  &= \mathcal{I}_{\mathrm{in}} + \mathcal{C}_{\mathrm{int}} - \mathcal{L}_{\Ghist} - \mathcal{D}_{\mathrm{erase}},
+  \label{eq:history-balance}\\
+  \dot S_{\mathrm{env}}
+  &\geq \frac{\mathcal{L}_{E}}{T_{\mathrm{env}}}.
+  \label{eq:entropy-balance}
+\end{align}
+Here \(\mathcal{P}_A\) pumps or maintains organized amplitude, \(\mathcal{K}_A\) represents damping, \(\mathcal{L}_A\) amplitude leakage, \(\mathcal{C}_{\phi\Ghist}\) phase-history coupling, \(\eta_\phi\) unresolved phase fluctuation, \(\mathcal{L}_{\Ghist}\) leakage of retained history, and \(\mathcal{L}_E\) exported energy.  These equations are intentionally schematic and should be read as an audit template rather than a universal equation of motion.  Each domain must supply its own measured channels and constitutive laws.
+
+The framework is strongest when it forces an explicit separation between three cases:
+\begin{center}
+\small
+\begin{tabular}{L{0.26\linewidth}L{0.33\linewidth}L{0.31\linewidth}}
+\toprule
+Case & Meaning & Scientific status \\
+\midrule
+Residual noise & The candidate cannot be causally reconstructed or predicted. & Keep as noise or model error. \\
+Retained history & The candidate is causal, stable, and improves held-out prediction. & Treat as \(\Ghist\) candidate. \\
+Leaked history & The missing information is transferred to accessible environment or loss channel. & Measure leakage, bath, contrast loss, radiation, heat, degradation, or forgetting. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Concrete Demonstration: Hysteresis Branch Ambiguity}
+A minimal example where \(\Ghist\) is not merely interpretive is hysteresis.  In a driven nonlinear oscillator, the same instantaneous drive value can correspond to different response branches depending on prior history.  A model using only the instantaneous drive therefore sees a many-valued projection.  A causal history coordinate can turn that ambiguous projection into a more nearly single-valued predictive representation.
+
+The controlled Duffing test uses
+\begin{equation}
+  \ddot{x}+\delta\dot{x}-x+x^3=h(t),
+  \label{eq:duffing-demo}
+\end{equation}
+with a swept drive \(h(t)\).  Projection onto \(h\) alone gives a large branch ambiguity.  Adding a causal memory-kernel coordinate
+\begin{equation}
+  \tau_\Ghist\dot\Ghist=h(t)-\Ghist(t)
+  \label{eq:duffing-gamma}
+\end{equation}
+reduces the held-out reconstruction error.  Table~\ref{tab:duffing-gamma-demo} summarizes the numerical audit.  In the generated demonstration, the baseline model using \(h\) alone has RMSE \(0.901\), while the best causal \(\Ghist\) candidate has RMSE \(0.215\), a reduction of about \(76.2\%\).  The BIC also improves strongly, with \(\Delta\mathrm{BIC}=-15122\) for the memory-kernel coordinate.  This does not prove a universal hidden coordinate.  It shows one concrete pattern that is poorly represented by an instantaneous projection but becomes organized when retained history is included.
+
+\begin{center}
+\small
+\begin{tabular}{lllrr}
+\hline
+Candidate & Family & Operational definition & RMSE / Reduction & $\Delta$BIC \\
+\hline
+memory\_kernel & kernel & $\tau\dot{\Gamma}=h-\Gamma$ & 0.215 / 76.2\% & -15122 \\
+dissipation & dissipative & $\Gamma=\int \delta\dot{x}^2\,dt$ & 0.797 / 11.6\% & -1266 \\
+entropy\_flux & information & $\Gamma=\int(D-\kappa|\dot{C}|)\,dt$ & 0.815 / 9.6\% & -1031 \\
+loop\_area & hysteresis & $\Gamma=\int x\,dh$ & 0.837 / 7.2\% & -753 \\
+attractor\_instability & attractor & $\Gamma=\int\lambda_{\mathrm{local}}\,dt$ & 0.864 / 4.2\% & -416 \\
+\hline
+\end{tabular}
+\captionof{table}{Duffing history-coordinate comparison.  The instantaneous-drive projection is branch-ambiguous; adding a causal memory-kernel \(\Ghist\) coordinate gives the largest reduction in held-out RMSE among the tested candidates.}
+\label{tab:duffing-gamma-demo}
+\end{center}
+
+This example clarifies the role of the framework.  The claim is not that every residual hides a useful \(\Ghist\).  The claim is that when a system has genuine preparation dependence, a causally constructed history coordinate can expose structure that an instantaneous-state model treats as scatter or noise.  This is the type of evidence required before \(\Ghist\) should be promoted from bookkeeping notation to a physically meaningful coordinate candidate.
+
+\section{Numerical Audit Demonstration}
+A minimal numerical audit is useful because the observer--target sign reversal can otherwise sound purely verbal.  It also provides the promised bridge between the bookkeeping variables and an explicit set of ordinary differential equations.  The demonstration in Fig.~\ref{fig:audit-demo} uses a dimensionless retained-history variable \(\Ghist_{\mathrm{target}}\), a leakage channel \(\Jout\), a coherent amplitude \(A\), and an observer data record \(D_{\mathrm{observer}}\).  A temporary measurement-coupling window increases leakage.  For the target, this leakage is a loss channel.  For the observer, the same leakage is the source of data gain.
+
+The model is intentionally simple:
+\begin{align}
+  \dot\Ghist_{\mathrm{target}}
+  &= I_{\mathrm{in}} + c_A A - \lambda_{\mathrm{leak}}(t)\Ghist_{\mathrm{target}} - \lambda_{\mathrm{erase}}\Ghist_{\mathrm{target}},\\
+  \dot D_{\mathrm{observer}}
+  &= g_{\mathrm{obs}}\lambda_{\mathrm{leak}}(t)\Ghist_{\mathrm{target}},\\
+  \dot A
+  &= P_A-k_AA-c_{\mathrm{leak}}\lambda_{\mathrm{leak}}(t)A.
+  \label{eq:numerical-audit-model}
+\end{align}
+The equations are not proposed as a universal dynamics.  They are a reproducible bookkeeping example showing how a target-side liability can become an observer-side asset through the same boundary channel.  More detailed physical, chemical, or biological models would replace these dimensionless coefficients with domain-specific constitutive laws, but the audit requirement is the same: specify the boundary, retained coordinate, leakage channel, and prediction target before evaluating the data.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.96\linewidth]{outputs/retained_history_leakage_audit_demo.png}
+  \caption{Numerical audit demonstration generated by the accompanying script.  The target retains internal history \(\Ghist_{\mathrm{target}}\) and coherent amplitude \(A\).  A temporary measurement-coupling window increases leakage \(\Jout\).  The same leakage is negative in the target accounting frame but positive in the observer accounting frame because it generates the observer data record \(D_{\mathrm{observer}}\).  The example is dimensionless and methodological; it illustrates sign reversal, not a new microscopic measurement theory.}
+  \label{fig:audit-demo}
+\end{figure}
+
+\section{Prediction and Falsification}
+A broad correspondence framework must be falsifiable.  Here prediction means prospective or held-out prediction from variables available no later than time \(t\), not retrospective curve fitting.  The target may be a future trajectory, branch switch, relaxation time, contrast loss, threshold crossing, failure onset, or a probability distribution over such outcomes.  The relevant comparison is domain-specific: a classical system may ask for future state or switching prediction, whereas a quantum or biological system may ask for improved prediction of distributions, rates, lifetimes, or response classes.
+
+The following criteria define when retained-history and leakage language becomes more than metaphor.  They are deliberately stated as promotion tests: a proposed \(\Ghist\) coordinate should not be accepted because it gives an attractive interpretation, but only because it survives causal construction, prospective prediction, perturbation, leakage accounting, and cross-channel checks.  Their purpose is to prevent \(\Ghist\) from becoming a free explanatory variable.  Failure of any one test does not falsify the bookkeeping language as a whole, but it does block promotion of that particular coordinate to physical status.
+
+\begin{criterion}[Causal construction]
+\(\Ghist(t)\) must be constructed only from records available at or before \(t\), using a fixed rule chosen before evaluating future outcomes.  A future-leak variable, post-selected branch label, or smoothing procedure that uses data after \(t\) may improve a retrospective fit, but it is not an admissible retained-history coordinate.  The falsifying sign is simple: if the effect disappears when the construction is made strictly causal, the candidate was a reconstruction artifact rather than retained history.
+\end{criterion}
+
+\begin{criterion}[Held-out prediction]
+Adding \(\Ghist\) or measured leakage observables should improve prediction of future events, thresholds, relaxation, switching, contrast loss, recovery time, or failure onset on data not used for construction.  The comparison must be against a clearly stated baseline using the same instantaneous observables but no retained-history coordinate.  The relevant evidence is not only lower error; it is stable improvement across held-out windows, preparations, or specimens, with penalties for extra parameters such as information criteria or predeclared cross-validation.  If the gain is small, unstable, or visible only after tuning on the test set, \(\Ghist\) remains a descriptive feature.
+\end{criterion}
+
+\begin{criterion}[Controlled perturbation]
+Changing preparation history or leakage boundary conditions should change later response in the predicted direction while leaving ordinary instantaneous controls matched as closely as possible.  Examples include preparing different hysteretic branches at the same drive value, changing environmental coupling to alter decoherence rate, or changing repair/degradation load before measuring recovery.  The decisive test is intervention: if the inferred \(\Ghist\) changes but the later response does not, or if the response changes in a direction unrelated to the proposed balance law, the coordinate is not yet physically supported.
+\end{criterion}
+
+\begin{criterion}[Channel robustness]
+The same inferred coordinate should remain stable across independent measurement channels, within the expected transformation rules.  A valid \(\Ghist\) candidate need not have identical numerical values in every instrument, but it should preserve ordering, phase relation, branch identity, or predicted leakage response when reconstructed from independent observables.  A coordinate visible only in one arbitrary preprocessing pipeline, one sensor, or one normalization convention remains suspect.  Robustness is especially important for biological examples, where many hidden confounders can mimic memory or degradation.
+\end{criterion}
+
+\begin{criterion}[Leakage accounting]
+Whenever leakage is invoked, its sign and boundary must be specified.  The same flux can be negative for the target and positive for the observer, so a claim about \(\Jout\) must state the system boundary, measured channel, and expected balance relation.  If a proposed leakage term cannot be connected to heat, radiation, contrast loss, exported material, degradation, forgetting, observer data, or another measurable channel, it should remain a qualitative analogy rather than an explanatory variable.
+\end{criterion}
+
+\begin{criterion}[Null and failure tests]
+A retained-history coordinate should be rejected or demoted to a descriptive feature if it fails to improve prospective prediction against strong instantaneous-state and stochastic baselines, if the improvement disappears under independent measurement channels, if it requires future information, or if controlled history and leakage perturbations do not change the later response in the predicted direction.  A successful fit is therefore insufficient by itself.  The candidate must also survive negative controls in which irrelevant history variables, shuffled histories, or boundary channels unrelated to the proposed mechanism fail to produce the same gain.
+\end{criterion}
+
+These criteria make the framework risky in the scientific sense.  Examples of concrete tests include: predicting hysteretic branch switching before it occurs; predicting decoherence or contrast loss from measured environmental coupling; predicting bond or condensate lifetime from leakage rates; specifying candidate biological recovery or collapse-time tests from repair and degradation channels; and testing whether a nominally noisy residual becomes structured after adding causal history variables.  Negative results are informative rather than embarrassing: they mark the boundary between useful retained-history coordinates, ordinary residual noise, and leakage terms that were only analogical.
+
+\section{Limitations}
+This framework is intentionally ambitious in scope but conservative in claim.  It does not derive the Einstein equations, the Schr\"odinger equation, quantum field theory, chemical bonding, genetic inheritance, immunity, or consciousness from a single primitive.  It does not claim that every noise source hides a recoverable history coordinate.  It does not claim that every leakage channel is measurable or reversible.
+
+The framework instead supplies a disciplined question: when a theory uses probability, damping, noise, branch labels, or residual error, is any part of that term actually a causal retained-history or leakage channel?  If the answer is no, the standard description remains sufficient.  If the answer is yes, then the state description was under-resolved.
+
+Biological applications require special caution.  Memory, aging, immunity, and disease involve many mechanisms across scales.  The present language can organize retained information and leakage, but domain-specific experiments and models remain necessary.  The correct use is therefore not ``life is solved,'' but ``living systems may provide high-value test beds for quasi-closure, retained history, leakage, repair, and degradation, once domain-specific data and controls are supplied.''
+
+\section{Conclusion}
+The main proposal is simple: retained history and leakage are complementary sides of the same nonequilibrium boundary.  \(\Ghist\) denotes what remains inside the system as usable memory, branch structure, coherent correlation, or dissipative debt.  Leakage denotes what is exported, radiated, thermalized, degraded, forgotten, or transferred to the environment.  Phase \(\phi\) and amplitude \(A\) provide the observable projection through which this balance becomes measurable.
+
+Within the scope hierarchy above, this perspective connects several previously separate threads.  Proper-time clock phase and quantum phase describe accumulated phase.  Decoherence and thermal dissipation describe amplitude and information loss.  Hysteresis describes retained branch history.  Bonding and material stabilization describe local phase-amplitude closure that survives escape channels.  Biological memory, homeostasis, genetic continuity, repair, and aging are treated here as candidate applications of living quasi-closure under continuous leakage.
+
+The framework should be judged not by rhetorical unification but by prediction.  If retained-history coordinates predict future response and controlled leakage perturbations alter that response as expected, the model has recovered information that lower-resolution descriptions had discarded.  If they do not, the language remains only a bookkeeping metaphor.  This is the intended standard: not replacement before evidence, but resolution where discarded history proves measurable.
+
+\begin{thebibliography}{9}
+\bibitem{Prigogine1977}
+I. Prigogine,
+\emph{Self-Organization in Nonequilibrium Systems},
+Wiley (1977).
+
+\bibitem{NicolisPrigogine1977}
+G. Nicolis and I. Prigogine,
+\emph{Self-Organization in Nonequilibrium Systems},
+Wiley (1977).
+
+\bibitem{Haken1983}
+H. Haken,
+\emph{Synergetics: An Introduction},
+Springer (1983).
+
+\bibitem{NielsenChuang2010}
+M. A. Nielsen and I. L. Chuang,
+\emph{Quantum Computation and Quantum Information},
+Cambridge University Press (2010).
+
+\bibitem{JoosZeh2003}
+E. Joos, H. D. Zeh, C. Kiefer, D. Giulini, J. Kupsch, and I.-O. Stamatescu,
+\emph{Decoherence and the Appearance of a Classical World in Quantum Theory},
+Springer (2003).
+
+\bibitem{Alberts2015}
+B. Alberts, A. Johnson, J. Lewis, D. Morgan, M. Raff, K. Roberts, and P. Walter,
+\emph{Molecular Biology of the Cell},
+Garland Science (2015).
+
+\bibitem{Nelson2008}
+P. Nelson,
+\emph{Biological Physics: Energy, Information, Life},
+W. H. Freeman (2008).
+
+\bibitem{KittelKroemer1980}
+C. Kittel and H. Kroemer,
+\emph{Thermal Physics},
+W. H. Freeman (1980).
+
+\bibitem{Strogatz2015}
+S. H. Strogatz,
+\emph{Nonlinear Dynamics and Chaos},
+Westview Press (2015).
+
+\bibitem{KreiderThomas2024}
+M. Kreider and P. J. Thomas,
+``On the Relation between Infinitesimal Shape Response Curves and Phase-Amplitude Reduction for Single and Coupled Limit-Cycle Oscillators,''
+\emph{SIAM Journal on Applied Dynamical Systems} \textbf{23}(2), 1636--1676 (2024).
+
+\bibitem{Karbowski2024}
+J. Karbowski,
+``Information Thermodynamics: From Physics to Neuroscience,''
+\emph{Entropy} \textbf{26}(9), 779 (2024).
+
+\bibitem{CaoLiang2025}
+Y. Cao and S. Liang,
+``Stochastic Thermodynamics for Biological Functions,''
+\emph{Quantitative Biology} \textbf{13}(1), e75 (2025).
+\end{thebibliography}
+
+\end{document}
