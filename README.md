@@ -93,47 +93,11 @@ outputs/retained_history_leakage_audit_demo.png
 ```
 
 
-## Suggested Release Files
 
-For a clean first release, include:
-
-```text
-README.md
-retained_history_leakage_four_channel_audit_framework.tex
-retained_history_leakage_four_channel_audit_framework.pdf
-outputs/retained_history_leakage_audit_demo.png
-outputs/retained_history_leakage_audit_demo.json
-scripts/retained_history_leakage_audit_demo.py
-```
-
-Do not include temporary build files such as:
-
-```text
-*.aux
-*.fdb_latexmk
-*.fls
-*.log
-*.out
-*.synctex
-```
-
-## Citation
-
-A formal DOI citation should be added after the Zenodo release is created.
-
-Temporary citation format:
-
-```text
-Yoshida. Retained History and Leakage in Nonequilibrium Systems:
-A Four-Channel Audit Framework for Phase-Amplitude Correspondence.
-Version 1.0.0, 2026.
-```
 
 ## License
 
-No license has been specified yet.  Before public release, choose a license appropriate for the manuscript and code.  Common choices are:
+This repository is licensed under the following terms:
 
-- CC BY 4.0 for manuscript text and figures
-- MIT, BSD-3-Clause, or Apache-2.0 for code
-
-If no license is added, reuse rights may be ambiguous even if the repository is public.
+- **Code:** [MIT License](https://opensource.org/licenses/MIT)
+- **Manuscript and Figures:** [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
